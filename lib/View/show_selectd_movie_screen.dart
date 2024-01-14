@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:movie_app/widgets/movie_card_widget.dart';
 import '../controller/movie_controller.dart';
 
-class SelectedMoviesScreen extends GetView<PostController> {
+class SelectedMoviesScreen extends GetView<MovieController> {
   const SelectedMoviesScreen({super.key});
 
   @override
@@ -12,10 +12,10 @@ class SelectedMoviesScreen extends GetView<PostController> {
       appBar: AppBar(
         title: const Text('Selected Movies'),
       ),
-      body:GetBuilder(
-          init: PostController(),
-          builder: (myController) {
-            final selectedPosts = controller.selectedPostList;
+      body: GetBuilder(
+          init: MovieController(),
+          builder: (c) {
+            final selectedPosts = controller.selectedMovieList;
             return ListView.builder(
               itemCount: selectedPosts.length,
               itemBuilder: (context, index) {

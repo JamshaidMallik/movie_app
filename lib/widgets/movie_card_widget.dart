@@ -2,7 +2,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:movie_app/Model/movie_model.dart';
-import '../Controller/movie_controller.dart';
+import '../controller/movie_controller.dart';
 import '../constant/constant.dart';
 
 class MovieCardWidget extends GetView<MovieController> {
@@ -33,9 +33,7 @@ class MovieCardWidget extends GetView<MovieController> {
               },
               leading: Checkbox(
                 value: item.isSelected,
-                onChanged: (value) {
-                  controller.selectItem(item, value!);
-                },
+                onChanged: (value) => controller.selectItem(item, value!),
               ),
               title: Text(
                 item.title.toString().toUpperCase(),
