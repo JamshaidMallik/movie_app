@@ -46,7 +46,7 @@ class MovieCardWidget extends GetView<MovieController> {
                       top: 15,
                       right: 10,
                       child: InkWell(
-                        onTap: () => c.selectItem(item),
+                        onTap: () => c.favToggleFunction(item),
                         child: CircleAvatar(
                           radius: 17.0,
                           backgroundColor: Colors.white60,
