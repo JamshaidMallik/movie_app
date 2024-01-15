@@ -1,4 +1,4 @@
-class MovieModel {
+class Movie {
   int? id;
   String? title;
   String? titleLong;
@@ -10,9 +10,9 @@ class MovieModel {
   String? backgroundImage;
   String? uploadedDate;
   List<String>? genres = [];
-  MovieModel({this.id, this.title, this.titleLong, this.body,  this.isSelected, this.year, this.rating, this.language, this.backgroundImage, this.uploadedDate, this.genres});
+  Movie({this.id, this.title, this.titleLong, this.body,  this.isSelected, this.year, this.rating, this.language, this.backgroundImage, this.uploadedDate, this.genres});
 
-  MovieModel.fromJson(Map<String, dynamic> json) {
+  Movie.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     title = json['title'] ?? '';
     titleLong = json['title_long'] ?? '';

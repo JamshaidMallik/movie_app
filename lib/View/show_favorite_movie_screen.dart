@@ -4,8 +4,8 @@ import 'package:movie_app/widgets/movie_card_widget.dart';
 import '../constant/constant.dart';
 import '../controller/movie_controller.dart';
 
-class SelectedMoviesScreen extends GetView<MovieController> {
-  const SelectedMoviesScreen({super.key});
+class FavoriteMoviesScreen extends GetView<MovieController> {
+  const FavoriteMoviesScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../constant/constant.dart';
 import '../widgets/movie_card_widget.dart';
-import 'show_selectd_movie_screen.dart';
+import 'show_favorite_movie_screen.dart';
 import '../../controller/movie_controller.dart';
 
 class MoviesScreen extends StatefulWidget {
@@ -29,7 +29,7 @@ class _MoviesScreenState extends State<MoviesScreen> {
             padding: const EdgeInsets.only(right: 5.0),
             child: GetBuilder<MovieController>(builder: (c) {
               return IconButton(
-                  onPressed: ()=> Get.to(const SelectedMoviesScreen()),
+                  onPressed: ()=> Get.to(const FavoriteMoviesScreen()),
                   icon: Badge(
                    isLabelVisible: c.selectedMovieList.isNotEmpty ? true :false,
                       label: Text(
@@ -97,7 +97,7 @@ class _MoviesScreenState extends State<MoviesScreen> {
                           }
                         );
                       } else{
-                        return const Center(child: Text('something wrong'));
+                        return const Center(child: Text('Error On Fetching Data'));
                       }
                     })),
           ],
