@@ -20,7 +20,7 @@ class MovieModel {
     year = json['year'];
     rating = json['rating'];
     language = json['language'];
-    backgroundImage = "https://www.yts.nz/${json['background_image_original']}";
+    backgroundImage = "https://www.yts.nz/${json['large_cover_image']}";
     uploadedDate = json['date_uploaded'];
     genres = json['genres'].cast<String>();
   }

@@ -1,29 +1,25 @@
-import 'dart:convert';
-import 'dart:developer';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 import 'package:movie_app/Model/movie_model.dart';
 import 'package:get/get.dart';
-
+import 'package:movie_app/constant/constant.dart';
 import '../Services/MovieServices.dart';
 
 class MovieController extends GetxController {
+  final ScrollController scrollController = ScrollController();
   MovieService movieService = MovieService();
-  String postUrl = 'https://jsonplaceholder.typicode.com/posts';
   MovieModel movieModel = MovieModel();
   List<MovieModel> movieList = [];
   List<MovieModel> selectedMovieList = [];
-  List visibleList = [].obs;
+  List<MovieModel> visibleList = [];
   bool isLoading = false;
   bool hasMore = true;
   int page = 1;
   int limit = 20;
-  final ScrollController scrollController = ScrollController();
+
   @override
   void onInit() {
     super.onInit();
     scrollController.addListener(_scrollListener);
-    // fetchMovies();
   }
 
   void selectItem(MovieModel item) {
@@ -33,12 +29,12 @@ class MovieController extends GetxController {
     } else {
       selectedMovieList.remove(item);
     }
+    /// add selected movie list to local storage
+    kStorage.write('saveItemList', selectedMovieList.toList());
     update();
   }
 
-
   void searchMovies(String value) {
-    log('searchQuery: $value');
     hasMore = false;
     visibleList = movieList.where((element) => element.title
             .toString()
@@ -48,7 +44,7 @@ class MovieController extends GetxController {
     update();
   }
 
-  Future fetchMovies() async {
+  Future<List<MovieModel>> fetchMovies() async {
     isLoading = true;
     var response = await movieService.getMovies(limit: limit, page: page);
     page++;

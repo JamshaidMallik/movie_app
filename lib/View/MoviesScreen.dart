@@ -51,6 +51,7 @@ class _MoviesScreenState extends State<MoviesScreen> {
         onRefresh: () => controller.onRefreshMovie(),
         child: Column(
           children: [
+            /// CupertinoSearchTextField is used to search the movie
             CupertinoSearchTextField(
               onChanged: (value) => controller.searchMovies(value),
               placeholder: 'Search',
@@ -60,6 +61,7 @@ class _MoviesScreenState extends State<MoviesScreen> {
               suffixInsets: const EdgeInsets.all(10),
               padding: const EdgeInsets.all(10),
             ),
+            /// Expanded widget is used to make the listview scrollable
             Expanded(
                 child: FutureBuilder(
                     future: controller.fetchMovies(),
@@ -98,8 +100,8 @@ class _MoviesScreenState extends State<MoviesScreen> {
                             }
                           }
                         );
-                      } else {
-                        return const Center(child: Text('No Data Found'));
+                      } else{
+                        return const Center(child: Text('something wrong'));
                       }
                     })),
           ],
@@ -108,7 +110,7 @@ class _MoviesScreenState extends State<MoviesScreen> {
     );
   }
 }
-
+/// loading for pagination
 // ignore: camel_case_types
 class loadingWidget extends StatelessWidget {
   final MovieController controller;
