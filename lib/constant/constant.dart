@@ -82,26 +82,3 @@ TextStyle whiteFontStyle({fontSize, fontWeight}) {
     ),
   );
 }
-
-List randomColor = [
-  Colors.red,
-  Colors.green,
-  Colors.blue,
-  Colors.yellow,
-  Colors.purple,
-  Colors.orange,
-  Colors.pink,
-  Colors.brown,
-  Colors.teal,
-  Colors.cyan,
-  Colors.lime,
-  Colors.indigo,
-  Colors.amber,
-  Colors.deepOrange,
-  Colors.deepPurple,
-  Colors.lightBlue,
-  Colors.lightGreen,
-  Colors.grey,
-  Colors.blueGrey,
-  Colors.black,
-];

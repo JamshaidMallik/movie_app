@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app/Model/movie_model.dart';
 import 'package:get/get.dart';
-import 'package:movie_app/constant/constant.dart';
 import '../Services/MovieServices.dart';
 
 class MovieController extends GetxController {
@@ -21,7 +20,6 @@ class MovieController extends GetxController {
     super.onInit();
     scrollController.addListener(_scrollListener);
   }
-
   void selectItem(MovieModel item) {
     item.isSelected = !item.isSelected!;
     if (item.isSelected!) {
@@ -29,8 +27,6 @@ class MovieController extends GetxController {
     } else {
       selectedMovieList.remove(item);
     }
-    /// add selected movie list to local storage
-    kStorage.write('saveItemList', selectedMovieList.toList());
     update();
   }
 
@@ -43,7 +39,6 @@ class MovieController extends GetxController {
         .toList();
     update();
   }
-
   Future<List<MovieModel>> fetchMovies() async {
     isLoading = true;
     var response = await movieService.getMovies(limit: limit, page: page);
@@ -60,14 +55,12 @@ class MovieController extends GetxController {
     update();
     return visibleList;
   }
-
   _scrollListener() {
     if (scrollController.position.maxScrollExtent == scrollController.offset) {
       fetchMovies();
       update();
     }
   }
-
   onRefreshMovie() async {
     await Future.delayed(const Duration(seconds: 2));
     movieList.clear();

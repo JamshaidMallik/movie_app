@@ -1,4 +1,3 @@
-import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -26,28 +25,25 @@ class _MoviesScreenState extends State<MoviesScreen> {
           style: bigFontStyle(),
         ),
         actions: [
-          GetBuilder<MovieController>(builder: (c) {
-            return c.selectedMovieList.isNotEmpty
-                ? InkWell(
-                    onTap: () => Get.to(const SelectedMoviesScreen()),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: CircleAvatar(
-                        backgroundColor: Colors.black,
-                        radius: 15.0,
-                        child: Text(
-                          c.selectedMovieList.length.toString(),
-                          style: TextStyle(color: whiteColor, fontWeight: FontWeight.bold, fontSize: 15.0),
-                        ),
+          Padding(
+            padding: const EdgeInsets.only(right: 5.0),
+            child: GetBuilder<MovieController>(builder: (c) {
+              return IconButton(
+                  onPressed: ()=> Get.to(const SelectedMoviesScreen()),
+                  icon: Badge(
+                   isLabelVisible: c.selectedMovieList.isNotEmpty ? true :false,
+                      label: Text(
+                        c.selectedMovieList.length.toString(),
+                        style: TextStyle(color: whiteColor),
                       ),
-                    ))
-                : const SizedBox();
-          }),
+                      child: const Icon(Icons.favorite_border_outlined)));
+            }),
+          ),
         ],
       ),
       body: RefreshIndicator(
         backgroundColor: whiteColor,
-        color: randomColor[Random().nextInt(randomColor.length)],
+        color: primaryColor,
         onRefresh: () => controller.onRefreshMovie(),
         child: Column(
           children: [
@@ -124,7 +120,7 @@ class loadingWidget extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 50.0),
       child: Center(
-          child: controller.hasMore ? CupertinoActivityIndicator(color: randomColor[Random().nextInt(randomColor.length)]) : const Text('has no more data')),
+          child: controller.hasMore ? CupertinoActivityIndicator(color: primaryColor) : const Text('has no more data')),
     );
   }
 }

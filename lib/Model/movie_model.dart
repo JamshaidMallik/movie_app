@@ -14,14 +14,14 @@ class MovieModel {
 
   MovieModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    title = json['title'];
-    titleLong = json['title_long'];
-    body = json['summary'];
+    title = json['title'] ?? '';
+    titleLong = json['title_long'] ?? '';
+    body = json['summary'] ?? '';
     year = json['year'];
     rating = json['rating'];
     language = json['language'];
     backgroundImage = "https://www.yts.nz/${json['large_cover_image']}";
-    uploadedDate = json['date_uploaded'];
+    uploadedDate = json['date_uploaded'] ?? '';
     genres = json['genres'].cast<String>();
   }
 }
