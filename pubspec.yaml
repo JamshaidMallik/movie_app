@@ -13,6 +13,8 @@ dependencies:
   get: ^4.6.6
   google_fonts: ^6.1.0
   http:
+  cached_network_image:
+
 
 dev_dependencies:
   flutter_test:

@@ -70,38 +70,38 @@ class _MoviesScreenState extends State<MoviesScreen> {
                           color: primaryColor,
                         ));
                       } else if (snapshot.hasData) {
-                        return ListView.builder(
-                            controller: controller.scrollController,
-                            itemCount: controller.visibleList.length + 1,
-                            physics: const BouncingScrollPhysics(),
-                            itemBuilder: (BuildContext context, int index) {
-                              if (index < controller.visibleList.length) {
-                                var item = controller.visibleList[index];
-                                return MovieCardWidget(item: item);
-                              } else {
-                                return loadingWidget(controller);
+                        return GetBuilder<MovieController>(
+                          builder: (c) {
+                            if (c.visibleList.isNotEmpty) {
+                              return ListView.builder(
+                                controller: c.scrollController,
+                                itemCount: c.visibleList.length + 1,
+                                physics: const BouncingScrollPhysics(),
+                                itemBuilder: (BuildContext context, int index) {
+                                  if (index < c.visibleList.length) {
+                                    var item = c.visibleList[index];
+                                    return MovieCardWidget(item: item);
+                                  } else {
+                                    return loadingWidget(c);
+                                  }
+                                });
+                            } else {
+                              if(c.movieList.isEmpty) {
+                                return Center(
+                                    child: CircularProgressIndicator(
+                                      color: primaryColor,
+                                    ));
                               }
-                            });
+                              return const Center(
+                              child: Text('No Match Found'),
+                            );
+                            }
+                          }
+                        );
                       } else {
                         return const Center(child: Text('No Data Found'));
                       }
                     })),
-            // Expanded(
-            //   child: (controller.visibleList.isNotEmpty)
-            //       ? ListView.builder(
-            //           controller: controller.scrollController,
-            //           itemCount: controller.visibleList.length + 1,
-            //           physics: const BouncingScrollPhysics(),
-            //           itemBuilder: (BuildContext context, int index) {
-            //             if (index < controller.visibleList.length) {
-            //               var item = controller.visibleList[index];
-            //               return MovieCardWidget(item: item);
-            //             } else {
-            //               return loadingWidget(controller);
-            //             }
-            //           })
-            //       : const Center(child: Text('No Match Found')),
-            // ),
           ],
         ),
       ),

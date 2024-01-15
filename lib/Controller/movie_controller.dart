@@ -17,7 +17,7 @@ class MovieController extends GetxController {
   bool isLoading = false;
   bool hasMore = true;
   int page = 1;
-  int limit = 50;
+  int limit = 20;
   final ScrollController scrollController = ScrollController();
   @override
   void onInit() {
@@ -38,6 +38,7 @@ class MovieController extends GetxController {
 
 
   void searchMovies(String value) {
+    log('searchQuery: $value');
     hasMore = false;
     visibleList = movieList.where((element) => element.title
             .toString()
@@ -48,8 +49,8 @@ class MovieController extends GetxController {
   }
 
   Future fetchMovies() async {
+    isLoading = true;
     var response = await movieService.getMovies(limit: limit, page: page);
-    log('fetchMovies: $response');
     page++;
     if (response['data']['movie_count'] < limit) { // total movies is 58317
       hasMore = false;
@@ -59,6 +60,7 @@ class MovieController extends GetxController {
       movieList.add(movieModel);
       visibleList = movieList;
     });
+    isLoading = false;
     update();
     return visibleList;
   }
@@ -73,6 +75,7 @@ class MovieController extends GetxController {
   onRefreshMovie() async {
     await Future.delayed(const Duration(seconds: 2));
     movieList.clear();
+    visibleList.clear();
     page = 1;
     hasMore = true;
     fetchMovies();

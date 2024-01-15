@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 Color primaryColor = Colors.black;
@@ -6,6 +7,9 @@ Color greyColor = Colors.grey;
 Color whiteColor = Colors.white;
 Color blackColor = Colors.black;
 Color lightGreyColor = Colors.grey.withOpacity(0.1);
+
+// media query height
+var kSize = MediaQueryData.fromView(WidgetsBinding.instance.window).size;
 
 TextStyle bigFontStyle() {
   return GoogleFonts.poppins(
