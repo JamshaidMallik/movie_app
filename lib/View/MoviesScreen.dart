@@ -31,9 +31,9 @@ class _MoviesScreenState extends State<MoviesScreen> {
               return IconButton(
                   onPressed: ()=> Get.to(const FavoriteMoviesScreen()),
                   icon: Badge(
-                   isLabelVisible: c.selectedMovieList.isNotEmpty ? true :false,
+                   isLabelVisible: c.visibleList.any((element) => element.isSelected == true) ? true : false,
                       label: Text(
-                        c.selectedMovieList.length.toString(),
+                        c.visibleList.where((element) => element.isSelected == true).length.toString(),
                         style: TextStyle(color: whiteColor),
                       ),
                       child: const Icon(Icons.favorite_border_outlined)));

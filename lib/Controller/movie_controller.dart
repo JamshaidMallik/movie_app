@@ -16,9 +16,6 @@ class MovieController extends GetxController {
   /// movieList is used to store the list of movies
   List<Movie> movieList = [];
 
-  /// selectedMovieList is used to store the list of selected movies
-  List<Movie> selectedMovieList = [];
-
   /// visibleList is used to store the list of visible movies
   List<Movie> visibleList = [];
 
@@ -38,14 +35,9 @@ class MovieController extends GetxController {
     scrollController.addListener(_scrollListener);
   }
 
-  /// favToggleFunction is used to toggle the favorite icon and add or remove the movie from the selectedMovieList
+  /// favToggleFunction is used to toggle the favorite icon and add or remove the movie from the screen
   void favToggleFunction(Movie item) {
     item.isSelected = !item.isSelected!;
-    if (item.isSelected!) {
-      selectedMovieList.add(item);
-    } else {
-      selectedMovieList.remove(item);
-    }
     update();
   }
 

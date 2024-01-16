@@ -20,7 +20,9 @@ class FavoriteMoviesScreen extends GetView<MovieController> {
       body: GetBuilder(
           init: MovieController(),
           builder: (c) {
-            final selectedPosts = controller.selectedMovieList;
+            final selectedPosts = controller.visibleList.where((element) {
+              return element.isSelected == true;
+            }).toList();
             if (selectedPosts.isEmpty) {
               return Center(
                   child: Column(
