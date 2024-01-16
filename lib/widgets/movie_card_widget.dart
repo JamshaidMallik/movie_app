@@ -28,7 +28,7 @@ class MovieCardWidget extends GetView<MovieController> {
                   ClipRRect(
                     borderRadius: BorderRadius.circular(10.0),
                     child: CachedNetworkImage(
-                      imageUrl: item.backgroundImage!,
+                      imageUrl:  'https://www.yts.nz${item.backgroundImage!}',
                       height: kSize.height * 0.25,
                       width: kSize.width,
                       fit: BoxFit.cover,
